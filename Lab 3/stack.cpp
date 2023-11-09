@@ -78,22 +78,3 @@ class Stack
             delete[] arr;
         }
 };
-
-/* int main()
-{
-    Stack stk = *(new Stack(10));
-    stk.push(8);
-    stk.push(5);
-    stk.push(3);
-    stk.pop();
-    stk.push(9);
-    stk.pop();
-    stk.pop();
-    stk.pop();
-    stk.pop();
-
-    cout << "\n\n" << "Current stack: ";
-    //stk.display();
-    cout << endl;
-    return 0;
-}*/
