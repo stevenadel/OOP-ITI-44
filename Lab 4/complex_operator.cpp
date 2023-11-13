@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string.h>
 
 using namespace std;
 
@@ -59,7 +60,7 @@ class Complex
             {
                 cout << "+";
             }
-            cout << imaginary << "j";
+            cout << imaginary << "j" << endl;
         }
 
         Complex operator + (Complex c)
@@ -112,6 +113,48 @@ class Complex
         {
             return real;
         }
+
+        int operator [] (int i)
+        {
+            if (0 == i)
+            {
+                return real;
+            }
+            if (1 == i)
+            {
+                return imaginary;
+            }
+        }
+
+        int operator [] (char *s)
+        {
+            if (!strcmp("real", s))
+            {
+                return real;
+            }
+            if (!strcmp("imaginary", s))
+            {
+                return imaginary;
+            }
+            return 0;
+        }
+
+        friend istream &operator >> (istream &input, Complex &c)
+        {
+            input >> c.real >> c.imaginary;
+            return input;
+        }
+
+        friend ostream &operator << (ostream &output, Complex &c)
+        {
+            output << c.getReal();
+            if (c.getImaginary() > 0)
+            {
+                output << "+";
+            }
+            output << c.getImaginary() << "j" << endl;
+            return output;
+        }
 };
 
 Complex operator + (int i, Complex c)
@@ -129,5 +172,7 @@ int main()
     Complex c1(4,-3), c2(1,2);
     Complex c3 = 5 + c2;
     (c3++).printComplex();
+    cin >> c3;
+    cout << c3;
     return 0;
 }
