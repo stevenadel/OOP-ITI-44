@@ -120,22 +120,19 @@ int main()
 
         cout << "Choose color (integer from 0-15): ";
         cin >> color;
-        if (color > 15) { color = WHITE; }
+        if (color > 15 || color < 0) { color = WHITE; }
 
         if ('c' == shape)
         {
-            Circle *cir = new Circle(x, y, radius, color);
-            arr[i] = cir;
+            arr[i] = new Circle(x, y, radius, color);
         }
         else if ('r' == shape)
         {
-            Rect *rect = new Rect(x, y, x2, y2, color);
-            arr[i] = rect;
+            arr[i] = new Rect(x, y, x2, y2, color);
         }
         else if ('l' == shape)
         {
-            Line *li = new Line(x, y, x2, y2, color);
-            arr[i] = li;
+            arr[i] = new Line(x, y, x2, y2, color);
         }
     }
 
