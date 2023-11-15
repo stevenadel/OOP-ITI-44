@@ -79,12 +79,11 @@ class Line : public Shape
 
 int main()
 {
-    int gdriver = DETECT, gmode, errorcode;
-    initgraph(&gdriver,&gmode,"d:\\tc\\bgi");
-
     int n;
     cout << "How many objects are you going to enter: ";
     cin >> n;
+
+    Shape *arr[n];
 
     char shape;
     int x, y, x2, y2, radius, color;
@@ -115,33 +114,37 @@ int main()
         }
         else
         {
-            cout << endl << "Please choose a valid shape.";
+            cout << "Please choose a valid shape." << endl;
             exit(1);
         }
 
         cout << "Choose color (integer from 0-15): ";
         cin >> color;
-
-        if (color > 15)
-        {
-            color = WHITE;
-        }
+        if (color > 15) { color = WHITE; }
 
         if ('c' == shape)
         {
-            Circle c(x, y, radius, color);
-            c.draw();
+            Circle *cir = new Circle(x, y, radius, color);
+            arr[i] = cir;
         }
         else if ('r' == shape)
         {
-            Rect rect(x, y, x2, y2, color);
-            rect.draw();
+            Rect *rect = new Rect(x, y, x2, y2, color);
+            arr[i] = rect;
         }
         else if ('l' == shape)
         {
-            Line li(x, y, x2, y2, color);
-            li.draw();
+            Line *li = new Line(x, y, x2, y2, color);
+            arr[i] = li;
         }
+    }
+
+    int gdriver = DETECT, gmode, errorcode;
+    initgraph(&gdriver,&gmode,"d:\\tc\\bgi");
+
+    for (int i = 0; i < n; i++)
+    {
+        arr[i]->draw();
     }
 
     getch();
